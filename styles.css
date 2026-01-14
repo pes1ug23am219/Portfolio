@@ -1,299 +1,124 @@
-
-/********************* NOTES ************************
-The basic resets below allow you to create your own styling
-without having to fight some of the most annoying built in 
-agent user styles.
-****************************************************/
-
-/************* Basic Resets ***************/
-
-h1, h2, h3, h4, p, ul, ol, blockquote {
-	margin: 0;
-	padding: 0;
-}
-
-nav ul, nav ol {
-	list-style-type: none;
-}
-
-/******** Additional resets *********/
-a { text-decoration:none; }
-
-img {
-	display: block;
-	max-width:100%; 
-	height: auto;
-}
-
+/* ================= RESET ================= */
 * { box-sizing: border-box; }
+img { max-width: 100%; display: block; }
+h1,h2,h3,h4,p { margin: 0 0 1em; }
 
-/************ End CSS Reset  *************/
+/* ================= THEME ================= */
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: #111827;
+  --primary: #38bdf8;
+  --secondary: #a5b4fc;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+}
 
-
-/********************* NOTES ************************
-Below are the only colors I have used. Choose four new
-colors and do a find and replace to replace the hex codes.
-****************************************************/
-
-
-/*********** Colors ***********
-
-primary = #b5b5b5;
-secondary = #efefef;
-accent = #4574b5
-text default = #333333;
-
-
-********************************/
-
-
-/************* Basic Page Rules ************/
-
-
-/********************* NOTES ************************
-I set the background of the page to dark and the main
-font to Georgia for most of the type. The header font
-is set to Arial. You could get two fonts that work well
-together and replace these choices. You may have to adjust
-sizing and spacing as well.
-****************************************************/
-
-
+/* ================= GLOBAL ================= */
 body {
-	font-family:Georgia;
-	color:#333;
-	background:#333;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
 }
 
-/************* typography ************/
-
-h1, h2, h3, h4, nav { 
-	font-family:Arial;
-	font-weight:bold; 
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-h1 {
-	font-size:250%;
-	margin-bottom:1em;
+a:hover { color: var(--secondary); }
+
+.wrapper {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
 }
 
-h2 {
-	font-size:170%;
-	margin-bottom:1em;
-}
+.primary { background: #020617; }
+.secondary { background: #020617; }
 
-h3 { 
-	font-size:135%;
-	margin-bottom:1em;
-}
-
-h4 { 
-	font-size:115%;
-	margin-bottom:.5em;
-}
-	
-
-p {
-	line-height:1.5em;
-	margin-bottom:1em;
-}
-
-a { color: #4574b5; }
-
-.social { font-size:175%; }
-
-.centered { text-align:center; }
-
-/****************** Grid ******************/
-
-.primary { background:#b5b5b5; }
-.secondary { background:#efefef; }
-
-
-/****************** Header and Main Navigation ****************/
-
-header {
-	padding: 20px;
-}
-
-header .wrapper {
-	display: flex;
-	flex-direction: column-reverse;
-	flex-wrap: wrap;
-}
-
+/* ================= HEADER ================= */
 .logo-container {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 #logo {
-	margin-right:20px;
+  width: 160px;
+  border-radius: 12px;
 }
 
-
-#mainnav {
-	margin-bottom: 20px;
+.subtitle {
+  font-size: 16px;
+  color: var(--secondary);
+  font-weight: 400;
 }
 
 #mainnav ul {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
 }
 
-#mainnav ul li a {
-	display:block;
-	color: #4574b5;
-	border-left: 2px solid #4574b5;
-	padding:0 20px;
-	font-size:20px;
+/* ================= SECTIONS ================= */
+h2 { color: var(--primary); }
+h3 { color: var(--secondary); }
+
+.section-intro {
+  color: var(--text-muted);
+  max-width: 700px;
 }
 
-/********************* NOTES ************************
-Removes the border on the first link...
-****************************************************/
-
-#mainnav ul li:first-of-type a {
-	border:none;
+/* ================= CARDS ================= */
+article {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-
-/***************** Section Specific Rules *****************/
-
-#work {
-	background:#fff;
-	padding: 20px;
+article:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(56,189,248,0.15);
 }
 
-#work img, .additional-projects img {
-	width: 100%;
-	margin-bottom: 10px;
+.tag {
+  color: var(--primary);
+  font-size: 14px;
 }
 
-.featured, .projects, #page-template #work section {
-	margin-bottom: 40px;
+/* ================= PROJECT SCROLLER ================= */
+.projects {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
 }
 
-#about-contact, .additional-projects {
-	padding: 20px;
+.projects article {
+  min-width: 280px;
+  scroll-snap-align: start;
 }
 
-#about-contact img {
-	margin-bottom: 10px;
+.projects::-webkit-scrollbar {
+  height: 6px;
+}
+.projects::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
 }
 
-/********************* NOTES ************************
-I added all this margin to the bottom of the footer so
-that when you click the link for "about" or "contact" in
-the main nav, there is room for them to go all the way to
-the top of the page.
-****************************************************/
-
-footer {
-	padding: 20px;
-	margin-bottom:600px;
+/* ================= FOOTER ================= */
+.centered {
+  text-align: center;
+  color: var(--text-muted);
 }
 
-@media only screen and (min-width: 650px) {
-	#work {
-		padding: 20px 10px;
-	}
-	
-	#work article, h2 {
-		padding: 0 10px;
-	}
-	
-	.projects, #page-template #work section  {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	
-	.projects article, #page-template #work section article {
-		width: 50%;
-	}
-	
-	.additional-projects .wrapper{
-		display: flex;
-		flex-wrap: wrap;
-	}
-	
-	.additional-projects h2 {
-		flex-basis: 100%;
-	}
-	
-	.additional-projects article {
-		width: 50%;
-		padding: 0 10px;
-	}
-	
-	#about-contact {
-		padding: 0;
-	}
-	
-	#about-contact .wrapper {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-start;
-		padding: 20px 10px;
-	}
-	
-	#about-contact .profile-photo {
-		flex: 1;
-		padding: 0 10px;
-		width: 100%;
-	}
-	
-	#about-contact article {
-		padding: 0 10px;
-	}
-	
-	#about-contact article:first-of-type {
-		flex: 2;
-	}
-	
-	#about-contact article:last-of-type {
-		flex-basis: 100%;
-	}
-	
-}
-
-@media only screen and (min-width: 768px) {
-	
-	.featured {
-		display: flex;
-	}
-	
-	.featured article {
-		flex: 1;
-	}
-	
-	.additional-projects article {
-		width: 25%;
-	}
-	
-	#about-contact .wrapper {
-		flex-wrap: nowrap;
-	}
-	
-	#about-contact article:last-of-type {
-		flex: 2;
-		flex-basis: 0;
-	}
-}
-
-@media only screen and (min-width: 1040px) {
-	.wrapper {
-		width: 1020px;
-		margin: auto;
-	}
-	
-	header .wrapper {
-		padding: 0 10px;
-	}
-	
-	/*Change the width here to 33% if you want three articles in a row*/
-	.projects article {
-		width: 25%;
-	}
+.social a {
+  font-size: 24px;
+  margin-right: 15px;
 }
